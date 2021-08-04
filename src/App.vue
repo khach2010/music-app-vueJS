@@ -1,6 +1,5 @@
 <template>
-
-  <app-header/>
+  <app-header />
 
   <!-- Introduction -->
   <section class="mb-8 py-20 text-white text-center relative">
@@ -28,8 +27,7 @@
     <div class="bg-white rounded border border-gray-200 relative flex flex-col">
       <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
         <span class="card-title">Songs</span>
-        <!-- Icon -->
-        <i class="fa fa-headphones-alt float-right text-green-400 text-xl"></i>
+        <i class="fa fa-headphones-alt float-right text-green-400 text-2xl"></i>
       </div>
       <!-- Playlist -->
       <ol id="playlist">
@@ -239,13 +237,10 @@
           <span class="song-title">Song Title</span> by
           <span class="song-artist">Artist</span>
         </div>
-        <!-- Scrub Container  -->
         <span class="block w-full h-2 rounded m-1 mt-2 bg-gray-200 relative cursor-pointer">
-          <!-- Player Ball -->
           <span class="absolute top-neg-8 text-gray-800 text-lg" style="left: 50%;">
             <i class="fas fa-circle"></i>
           </span>
-          <!-- Player Progress Bar-->
           <span class="block h-2 rounded bg-gradient-to-r from-green-500 to-green-400"
             style="width: 50%;"></span>
         </span>
@@ -256,19 +251,20 @@
       </div>
     </div>
   </div>
-  <auth-model/>
+
+  <auth-modal />
 
 </template>
 
 <script>
 import AppHeader from './components/Header.vue';
-import AuthModel from './components/Auth.vue';
+import AuthModal from './components/Auth.vue';
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AuthModel,
+    AuthModal,
   },
 };
 </script>
