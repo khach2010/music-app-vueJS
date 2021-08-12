@@ -66,6 +66,17 @@
               </vee-field>
               <ErrorMessage name="country" class="text-red-600" />
             </div>
+            <!-- Favourties -->
+            <div class="mb-3">
+              <label class="inline-block mb-2">favourite music type</label>
+              <vee-field as="select" name="favourite" class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded">
+                <option value="Jazz">Jazz</option>
+                <option value="Rock">Rock</option>
+                <option value="Pop">Pop</option>
+                <option value="Dance">Dance</option>
+              </vee-field>
+               <ErrorMessage name="favourite" class="text-red-600" />
+            </div>
             <!-- TOS -->
             <div class="mb-3 pl-6">
               <vee-field type="checkbox" name="tos" value="1"
@@ -82,7 +93,6 @@
 </template>
 
 <script>
-import { auth, db } from '@/includes/firebase';
 
 export default {
   name: 'RegeisterForm',
@@ -95,10 +105,12 @@ export default {
         password: 'required|min:3|max:100',
         comfirm_password: 'passwords_mismatch:@password',
         country: 'required|country_excluded:Antarcica',
+        favourite: 'required',
         tos: 'tos',
       },
       userData: {
         country: 'USA',
+        favourite: 'Jazz',
       },
       reg_in_submission: false,
       reg_show_alert: false,
@@ -112,9 +124,9 @@ export default {
       this.reg_in_submission = true;
       this.reg_alert_variant = 'bg-blue-500';
       this.reg_alert_msg = 'Please wait! Your account is being created.';
-      let userCred = null;
+
       try {
-        userCred = await auth.createUserWithEmailAndPassword(values.email, values.password);
+        await this.$store.dispatch('register', values);
       } catch (error) {
         this.reg_in_submission = false;
         this.reg_alert_variant = 'bg-red-500';
@@ -124,7 +136,6 @@ export default {
 
       this.reg_alert_variant = 'bg-green-500';
       this.reg_alert_msg = 'Success! Your account has been created';
-      console.log(userCred);
     },
   },
 };

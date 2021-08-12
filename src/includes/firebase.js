@@ -2,9 +2,7 @@ import firebase from 'firebase'
 import 'firebase/auth'
 import 'firebase/firestore'
 
-const firebaseConfig = {
-  // your firebase app SDK here
-}
+const firebaseConfig = {}
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
@@ -12,5 +10,6 @@ firebase.initializeApp(firebaseConfig)
 // assign the auth and firestore reference from firebase to variables
 const auth = firebase.auth()
 const db = firebase.firestore()
+const userCollection = db.collection('users')
 
-export { auth, db }
+export { auth, db, userCollection }
