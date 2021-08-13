@@ -44,7 +44,11 @@ export default createStore({
       if (user) {
         commit('toggleAuth')
       }
-      console.log(user)
+    },
+    async login({ commit }, payload) {
+      await auth.signInWithEmailAndPassword(payload.email, payload.password)
+
+      commit('toggleAuth')
     },
   },
 })
