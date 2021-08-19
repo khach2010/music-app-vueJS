@@ -103,8 +103,6 @@ export default {
           this.uploads[uploadIndex].text_class = 'text-green-400';
         });
       });
-
-      console.log(files);
     },
   },
 };
