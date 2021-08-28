@@ -10,13 +10,17 @@ firebase.initializeApp(firebaseConfig)
 
 // assign the auth and firestore reference from firebase to variables
 const auth = firebase.auth()
-
 const db = firebase.firestore()
-
 const storage = firebase.storage()
-
 const usersCollection = db.collection('users')
-
 const songsCollection = db.collection('songs')
+const commentsCollection = db.collection('comments')
 
-export { auth, db, usersCollection, songsCollection, storage }
+export {
+  auth,
+  db,
+  usersCollection,
+  songsCollection,
+  storage,
+  commentsCollection,
+}
