@@ -1,11 +1,13 @@
 import { createStore } from 'vuex'
 import { auth, usersCollection } from '@/includes/firebase'
+import { Howl } from 'howler'
 
 export default createStore({
   state: {
     authModalShow: false,
     userLoggedIn: false,
     currentSong: {},
+    sound: {},
   },
   mutations: {
     toggleAuthModal: (state) => {
@@ -16,10 +18,20 @@ export default createStore({
     },
     newSong(state, payload) {
       state.currentSong = payload
+      state.sound = new Howl({
+        src: [payload.url],
+        html5: true,
+      })
     },
   },
   getters: {
     // authModalShow: (state) => state.authModalShow,
+    playing: (state) => {
+      if (state.sound.playing) {
+        return state.sound.playing()
+      }
+      return false
+    },
   },
   actions: {
     async register({ commit }, payload) {
@@ -59,8 +71,20 @@ export default createStore({
 
       commit('toggleAuth')
     },
-    async newSong({ commit }, payload) {
+    async newSong({ commit, state }, payload) {
       commit('newSong', payload)
+      state.sound.play()
+    },
+    async toggleAudio({ state }) {
+      if (!state.sound.playing) {
+        return
+      }
+
+      if (state.sound.playing()) {
+        state.sound.pause()
+      } else {
+        state.sound.play()
+      }
     },
   },
 })
