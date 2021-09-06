@@ -88,6 +88,7 @@ export default createStore({
 
       commit('newSong', payload)
       state.sound.play()
+      this.toggleAudio(state)
 
       state.sound.on('play', () => {
         requestAnimationFrame(() => {
