@@ -20,7 +20,9 @@
           <span class="song-title">{{currentSong.modified_name}}</span> by
           <span class="song-artist">(uploaded {{currentSong.display_name}})</span>
         </div>
-        <span class="block w-full h-2 rounded m-1 mt-2 bg-gray-200 relative cursor-pointer">
+        <!-- Scrub Container  -->
+        <span class="block w-full h-2 rounded m-1 mt-2 bg-gray-200 relative cursor-pointer"
+          @click.prevent="updateSeek">
           <span class="absolute top-neg-8 text-gray-800 text-lg" :style="{left: playerProgress}">
             <i class="fas fa-circle"></i>
           </span>
@@ -47,7 +49,7 @@ export default {
     ...mapState(['seek', 'durattion', 'playerProgress', 'currentSong']),
   },
   methods: {
-    ...mapActions(['toggleAudio']),
+    ...mapActions(['toggleAudio', 'updateSeek']),
   },
 };
 </script>
