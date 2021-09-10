@@ -15,6 +15,7 @@
           <!-- Song Info -->
           <div class="text-3xl font-bold">{{song.modified_name}}</div>
           <div>{{song.genre}}</div>
+          <div class="song-price">{{ $n(1, 'çurrency', 'ja') }}</div>
         </div>
       </div>
     </section>
