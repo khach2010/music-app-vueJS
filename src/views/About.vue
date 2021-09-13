@@ -3,7 +3,11 @@
 </template>
 
 <script>
+import DummyModule from '@/store/modules/dummy';
+
 export default {
-  name: 'About',
+  created() {
+    this.$store.registerModule(DummyModule);
+  },
 };
 </script>
