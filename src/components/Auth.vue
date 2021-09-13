@@ -68,7 +68,9 @@ export default {
     // ...mapState({
     //   modal: 'authModalShow',
     // }),
-    ...mapState(['authModalShow']),
+    ...mapState({
+      authModalShow: (state) => state.auth.authModalShow,
+    }),
     // ...mapGetters(['authModalShow']),
   },
   methods: {
