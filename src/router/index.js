@@ -5,6 +5,13 @@ import About from '@/views/About.vue'
 import Manage from '@/views/Manage.vue'
 import Song from '@/views/Song.vue'
 
+// const Home = () => import('@/views/Home.vue')
+// const Manage = () =>
+//   import(/* webpackChunkName: "groupedChunk" */ '@/views/Manage.vue')
+// const Song = () =>
+//   import(/* webpackChunkName: "groupedChunk" */ '@/views/Song.vue')
+// const About = () => import('@/views/About.vue')
+
 const routes = [
   {
     name: 'home',

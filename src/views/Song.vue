@@ -76,7 +76,7 @@
 
 <script>
 import { songsCollection, auth, commentsCollection } from '@/includes/firebase';
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Song',
@@ -89,13 +89,12 @@ export default {
       comment_in_submission: false,
       comment_show_alert: false,
       comment_alert_variant: 'bg-blue-500',
-      comment_alert_message: 'Please wait! Your comment is being submmitted',
+      comment_alert_message: 'Please wait! Your comment is being submitted',
       comments: [],
       sort: '1',
     };
   },
   computed: {
-    ...mapGetters(['playing']),
     ...mapState({
       userLoggedIn: (state) => state.auth.userLoggedIn,
     }),
@@ -104,12 +103,13 @@ export default {
         if (this.sort === '1') {
           return new Date(b.datePosted) - new Date(a.datePosted);
         }
+
         return new Date(a.datePosted) - new Date(b.datePosted);
       });
     },
   },
   async beforeRouteEnter(to, from, next) {
-    const docSnapshot = await songsCollection.doc(to.$route.params.id).get();
+    const docSnapshot = await songsCollection.doc(to.params.id).get();
 
     next((vm) => {
       if (!docSnapshot.exists) {
@@ -118,6 +118,7 @@ export default {
       }
 
       const { sort } = vm.$route.query;
+
       // eslint-disable-next-line no-param-reassign
       vm.sort = sort === '1' || sort === '2' ? sort : '1';
 
@@ -132,7 +133,7 @@ export default {
       this.comment_in_submission = true;
       this.comment_show_alert = true;
       this.comment_alert_variant = 'bg-blue-500';
-      this.comment_alert_message = 'Please wait! Your comment is being submmitted';
+      this.comment_alert_message = 'Please wait! Your comment is being submitted';
 
       const comment = {
         content: values.comment,
@@ -143,7 +144,7 @@ export default {
       };
 
       await commentsCollection.add(comment);
-      // update comment count
+
       this.song.comment_count += 1;
       await songsCollection.doc(this.$route.params.id).update({
         comment_count: this.song.comment_count,
@@ -153,21 +154,23 @@ export default {
 
       this.comment_in_submission = false;
       this.comment_alert_variant = 'bg-green-500';
-      this.comment_alert_message = 'Comment added';
+      this.comment_alert_message = 'Comment added!';
 
       resetForm();
     },
     async getComments() {
-      const snapshots = await commentsCollection.where('sid', '==', this.$route.params.id).get();
+      const snapshots = await commentsCollection.where(
+        'sid', '==', this.$route.params.id,
+      ).get();
 
       this.comments = [];
 
-      snapshots.forEach((doc) => {
+      snapshots.forEach((doc) => [
         this.comments.push({
           docID: doc.id,
           ...doc.data(),
-        });
-      });
+        }),
+      ]);
     },
   },
   watch: {
@@ -175,6 +178,7 @@ export default {
       if (newVal === this.$route.query.sort) {
         return;
       }
+
       this.$router.push({
         query: {
           sort: newVal,

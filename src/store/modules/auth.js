@@ -5,7 +5,6 @@ export default {
     authModalShow: false,
     userLoggedIn: false,
   },
-  getters: {},
   mutations: {
     toggleAuthModal: (state) => {
       state.authModalShow = !state.authModalShow

@@ -1,13 +1,15 @@
 <template>
-  <h1>ABout Page</h1>
+  <div class="about">
+    <h1>About Page</h1>
+  </div>
 </template>
 
 <script>
-import DummyModule from '@/store/modules/dummy';
+import dummyModule from '@/store/modules/dummy';
 
 export default {
   created() {
-    this.$store.registerModule(DummyModule);
+    this.$store.registerModule('dummy', dummyModule);
   },
 };
 </script>

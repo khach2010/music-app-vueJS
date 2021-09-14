@@ -1,6 +1,7 @@
 <template>
         <!-- Registration Form -->
-          <div class="text-center text-white font-bold p-5 mb-4" v-if="reg_show_alert" :class="reg_alert_variant">
+          <div class="text-center text-white font-bold
+          p-5 mb-4" v-if="reg_show_alert" :class="reg_alert_variant">
             {{reg_alert_msg}}
           </div>
           <vee-form :validation-schema="schema" @submit="register" :initial-values="userData">
@@ -35,7 +36,9 @@
               <label class="inline-block mb-2">Password</label>
               <vee-field type="password" name="password" :bails="false"
               v-slot="{field, errors}">
-                  <input type="password" v-bind="field" class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
+                  <input type="password" v-bind="field"
+                  class="block w-full py-1.5 px-3 text-gray-800
+                  border border-gray-300
                   transition duration-500 focus:outline-none
                   focus:border-black rounded"
                 placeholder="Password" />
@@ -69,7 +72,9 @@
             <!-- Favourties -->
             <div class="mb-3">
               <label class="inline-block mb-2">favourite music type</label>
-              <vee-field as="select" name="favourite" class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded">
+              <vee-field as="select" name="favourite" class="block w-full
+              py-1.5 px-3 text-gray-800 border border-gray-300
+              transition duration-500 focus:outline-none focus:border-black rounded">
                 <option value="Jazz">Jazz</option>
                 <option value="Rock">Rock</option>
                 <option value="Pop">Pop</option>
@@ -101,7 +106,7 @@ export default {
   data() {
     return {
       schema: {
-        name: 'required|min:3|max:100|alpha_spaces',
+        name: 'required|min:3|max:100',
         email: 'required|min:3|max:100|email',
         age: 'required|min_value:18|max_value: 100',
         password: 'required|min:3|max:100',
