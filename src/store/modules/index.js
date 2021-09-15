@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 import { camelCase } from 'lodash'
 
 const requireModule = require.context('.', false, /\.js$/)

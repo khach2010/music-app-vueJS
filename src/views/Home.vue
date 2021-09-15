@@ -78,7 +78,7 @@ export default {
 
       if (bottomOfWindow) {
         this.getSongs();
-        console.log('Bottom of the window');
+        // console.log('Bottom of the window');
       }
     },
     async getSongs() {

@@ -1,16 +1,18 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable semi */
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store'
-import Home from '@/views/Home.vue'
-import About from '@/views/About.vue'
-import Manage from '@/views/Manage.vue'
-import Song from '@/views/Song.vue'
+// import Home from '@/views/Home.vue'
+// import About from '@/views/About.vue'
+// import Manage from '@/views/Manage.vue'
+// import Song from '@/views/Song.vue'
 
-// const Home = () => import('@/views/Home.vue')
-// const Manage = () =>
-//   import(/* webpackChunkName: "groupedChunk" */ '@/views/Manage.vue')
-// const Song = () =>
-//   import(/* webpackChunkName: "groupedChunk" */ '@/views/Song.vue')
-// const About = () => import('@/views/About.vue')
+const Home = () => import('@/views/Home.vue')
+const Manage = () =>
+  import(/* webpackChunkName: "groupedChunk" */ '@/views/Manage.vue')
+const Song = () =>
+  import(/* webpackChunkName: "groupedChunk" */ '@/views/Song.vue')
+const About = () => import('@/views/About.vue')
 
 const routes = [
   {
@@ -32,7 +34,7 @@ const routes = [
     },
     component: Manage,
     beforeEnter: (to, from, next) => {
-      console.log('Manage route Guard')
+      // console.log('Manage route Guard')
       next()
     },
   },

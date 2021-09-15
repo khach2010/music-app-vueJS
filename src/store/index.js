@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 import { createStore } from 'vuex'
 import modules from './modules'
 

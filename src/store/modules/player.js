@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 import { Howl } from 'howler'
 import helper from '@/includes/helper'
 
@@ -29,6 +30,7 @@ export default {
     updatePosition(state) {
       state.seek = helper.formatTime(state.sound.seek())
       state.duration = helper.formatTime(state.sound.duration())
+      // eslint-disable-next-line operator-linebreak
       state.playerProgress = `${(state.sound.seek() / state.sound.duration()) *
         100}%`
     },

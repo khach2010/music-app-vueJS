@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import { songsCollection, auth, commentsCollection } from '@/includes/firebase';
 import { mapState, mapActions } from 'vuex';
+import { songsCollection, auth, commentsCollection } from '@/includes/firebase';
 
 export default {
   name: 'Song',

@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 import _ from 'lodash'
 
 export default {
@@ -5,12 +6,14 @@ export default {
     const baseComponents = require.context(
       '../components/base/',
       false,
+      // eslint-disable-next-line comma-dangle
       /[A-Za-z0-9-_,\s]+\.vue$/i
     )
 
     baseComponents.keys().forEach((fileName) => {
       const componentConfig = baseComponents(fileName)
       const componentName = _.upperFirst(
+        // eslint-disable-next-line comma-dangle
         _.camelCase(fileName.replace(/^\.\//, '').replace(/\.\w+$/, ''))
       )
 
@@ -19,6 +22,7 @@ export default {
       // export default
       app.component(
         `Base${componentName}`,
+        // eslint-disable-next-line comma-dangle
         componentConfig.default || componentConfig
       )
     })
